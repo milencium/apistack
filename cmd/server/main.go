@@ -4,7 +4,7 @@ import (
 	"net/http"
 	database "github.com/milencium/apistack/internal/database"
 	transportHTTP "github.com/milencium/apistack/internal/transport/http"
-	comment "github.com/milencium/apistack/internal/comment/"
+	"github.com/milencium/apistack/internal/comment"
 )
 // App - the struct which contains things like pointers 
 // to database connection
@@ -17,13 +17,13 @@ func (app *App) Run() error{
 
 	//Defining database connection
 	var err error 
-	db, err = database.NewDatabase()
+	db, err := database.NewDatabase()
 	if err != nil{
 		fmt.Println("database error")
 		return err
 	}
 	//Running migrations for database
-	err database.MigrateDB(db)
+	err = database.MigrateDB(db)
 	if err != nil {
 		return err
 	}

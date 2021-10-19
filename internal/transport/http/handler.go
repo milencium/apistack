@@ -3,7 +3,9 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
-	"github.com/milenicum/internal/comment"
+	"github.com/milencium/apistack/internal/comment"
+	"strconv"
+
 )
 // Handler - stores pointer to our comments service
 type Handler struct {
@@ -13,7 +15,7 @@ type Handler struct {
 // NewHandler - returns a pointer to a Handler
 func NewHandler(service *comment.Service)*Handler{
 	return &Handler{
-		Service: service
+		Service: service,
 	}
 }
 // SetupRoutes - sets up all the routes for our application
@@ -68,7 +70,7 @@ func (h *Handler) PostComment(w http.ResponseWriter, r *http.Request){
 	if err != nil {
 		fmt.Fprintf(w, "Failed to post new comment")
 	}
-	fmt.Fprinf(w, "%v", comment)
+	fmt.Fprintf(w, "%v", comment)
 }
 
 // UpdateComment - updates a comment by ID
@@ -95,5 +97,5 @@ func (h *Handler) DeleteComment(w http.ResponseWriter, r *http.Request){
 	if err != nil {
 		fmt.Fprintf(w, "Failed to delete comment by comment ID")
 	}
-	fmt.Fprinf(w, "Successfully deleted comment")
+	fmt.Fprintf(w, "Successfully deleted comment")
 }
