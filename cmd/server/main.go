@@ -37,7 +37,7 @@ func (app *App) Run() error{
 	handler.SetupRoutes()
 
 
-
+	
 	if err := http.ListenAndServe(":8080", handler.Router); err != nil{
 		fmt.Println("Failed to set up server")
 		return err 
@@ -50,6 +50,7 @@ func (app *App) Run() error{
 func main(){
 	fmt.Println("api stack")
 	app := App{}
+	//Run je metoda na struct App koja se ode poziva
 	if err := app.Run() ; err != nil {
 		fmt.Println("Error starting up our REST API")
 		fmt.Println(err)
